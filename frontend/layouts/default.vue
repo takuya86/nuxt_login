@@ -1,8 +1,19 @@
 <template>
-  <div>
+  <div class="container">
+    <Header />
     <nuxt />
   </div>
 </template>
+
+<script>
+import Header from '~/components/Organisms/header.vue'
+
+export default {
+  components: {
+    Header
+  }
+}
+</script>
 
 <style>
 html {
@@ -22,6 +33,11 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;;
 }
 
 .button--green {
