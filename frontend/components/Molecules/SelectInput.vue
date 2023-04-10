@@ -30,3 +30,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+</style>

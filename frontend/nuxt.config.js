@@ -49,12 +49,17 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+  proxy: {
+    '/api/v1': {
+      target: 'http://backend:5000',
+      pathRewrite: {
+        '^/api': '/api/v1/'
+      }
+    }
+  },
+
   axios: {
-    baseURL: "http://localhost:3000"
+    baseURL: "http://localhost:5000/api/v1"
   },
   auth: {
     redirect: {
