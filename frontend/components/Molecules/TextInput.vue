@@ -39,3 +39,19 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  label {
+    width: 120px;
+  }
+  input {
+    width: 300px;
+    height: 35px;
+  }
+}
+</style>

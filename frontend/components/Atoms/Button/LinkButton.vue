@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="link-btn">
     <nuxt-link :to="link">{{ text }}</nuxt-link>
   </div>
 </template>
@@ -18,3 +18,13 @@ export default {
   }
 }
 </script>
+
+<style  lang="scss" scoped>
+.link-btn {
+  font-size: 15px;
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+</style>

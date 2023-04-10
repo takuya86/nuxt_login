@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Header />
     <nuxt />
   </div>
@@ -33,6 +33,11 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;;
 }
 
 .button--green {

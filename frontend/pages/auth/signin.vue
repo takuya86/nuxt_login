@@ -1,5 +1,15 @@
 <template>
   <div>
-    <h2>ログイン</h2>
+    <CertificationForm :title="'ログイン'" :submitBtnText="'ログイン'" :methodName="'signin'" />
   </div>
 </template>
+
+<script>
+import CertificationForm from '~/components/Organisms/Auth/CertificationForm.vue'
+
+export default {
+  components: {
+    CertificationForm,
+  }
+}
+</script>
