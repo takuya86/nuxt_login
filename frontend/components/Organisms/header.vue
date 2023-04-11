@@ -2,8 +2,10 @@
   <div class="header--wrapper">
     <header>
       <div class="header--inner">
+        <LinkButton :link="`/`" :text="'TOP'" />
         <LinkButton :link="`/auth/signup`" :text="'新規登録'" />
         <LinkButton :link="`/auth/signin`" :text="'ログイン'" />
+        <a class="logout-btn" @click="logout">ログアウト</a>
       </div>
     </header>
   </div>
@@ -11,15 +13,28 @@
 
 <script>
 import LinkButton from '~/components/Atoms/Button/LinkButton.vue'
+import SubmitButton from '~/components/Atoms/Button/SubmitButton.vue'
 
 export default {
   components: {
-    LinkButton
+    LinkButton,
+    SubmitButton
   },
   data() {
     return {
       link: '',
-      新規登録text: ''
+      text: ''
+    }
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout().then(() => {
+        localStorage.removeItem('access-token')
+        localStorage.removeItem('client')
+        localStorage.removeItem('uid')
+        localStorage.removeItem('token-type')
+        this.$router.push(`/auth/signin`)
+      })
     }
   }
 }
@@ -28,8 +43,7 @@ export default {
 <style  lang="scss" scoped>
 .header--wrapper {
   height: 65px;
-  background: #ffffff;
-  border-top: 2px solid #5465ac;
+  margin-bottom: 20px;
 }
 .header--inner {
   width: 1000px;
@@ -39,5 +53,8 @@ export default {
   gap: 15px;
   justify-content: end;
   align-items: center;
+}
+.logout-btn {
+  cursor: pointer;
 }
 </style>

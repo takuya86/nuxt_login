@@ -24,6 +24,7 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.api_only = true
+    config.action_controller.allow_forgery_protection = false
     config.i18n.default_locale = :ja
   end
 end
