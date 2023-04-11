@@ -1,12 +1,24 @@
 <template>
   <div class="container">
-    <div>
+    <div class="main">
       <h1 class="title">
         nuxt認証機能
       </h1>
+      <div>{{ this.$auth.loggedIn }}</div>
+      <UserDatail />
     </div>
   </div>
 </template>
+
+<script>
+import UserDatail from '~/components/Organisms/Auth/UserDatail.vue'
+
+export default {
+  components: {
+    UserDatail
+  },
+}
+</script>
 
 <style>
 html {
@@ -18,7 +30,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  background: #e5e5e5;
+  /* background: #e5e5e5; */
 }
 
 *,
@@ -26,5 +38,10 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+.main {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
 }
 </style>

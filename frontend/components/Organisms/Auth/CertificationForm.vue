@@ -48,8 +48,8 @@ export default {
         case 'signup':
           this.signup()
           break
-        case 'signin':
-          this.signin()
+        case 'login':
+          this.login()
           break
         default:
           console.error('Invalid method name:', this.methodName)
@@ -57,7 +57,6 @@ export default {
       }
     },
     async signup() {
-      console.log('実行')
       try {
         await this.$axios.post('/auth', {
           name: this.user.name,
@@ -69,6 +68,14 @@ export default {
       } catch (e) {
         this.error = e.response.data.errors.full_messages
         alert(this.error)
+      }
+    },
+    async login() {
+      console.log(this.user)
+      try {
+        await await this.$store.dispatch('login', this.user)
+      } catch (error) {
+        this.error = error.response.data.errors
       }
     }
   }

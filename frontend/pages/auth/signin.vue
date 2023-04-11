@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CertificationForm :title="'ログイン'" :submitBtnText="'ログイン'" :methodName="'signin'" />
+    <CertificationForm :title="'ログイン'" :submitBtnText="'ログイン'" :methodName="'login'" />
   </div>
 </template>
 
