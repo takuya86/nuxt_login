@@ -46,6 +46,7 @@ export default {
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
+  text-align: left;
   label {
     width: 120px;
   }

@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
     <AlertMessege :errorMessage="errorMessage" v-if="errorMessage" />
     <TextInput :value="user.name" :type="'text'" :label="'名前'" @input="user.name = $event" />
-    <TextInput :value="user.name_kana" :type="'text'" :label="'ふりがな'" @input="user.name_kana = $event" />
+    <TextInput :value="user.name_kana" :type="'text'" :label="'ふりがな'" @input="user.name_kana = $event" v-if="$route.name === 'auth-signup'" />
     <TextInput :value="user.email" :type="'email'" :label="'メールアドレス'" @input="user.email = $event" />
     <TextInput :value="user.password" :type="'password'" :label="'パスワード'" @input="user.password = $event" />
     <SubmitButton :text="submitBtnText" :methodName="methodName" @click-event="handleClickEvent" />
