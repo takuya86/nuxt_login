@@ -27,14 +27,12 @@ export default {
     }
   },
   methods: {
-    async logout() {
-      await this.$auth.logout().then(() => {
-        localStorage.removeItem('access-token')
-        localStorage.removeItem('client')
-        localStorage.removeItem('uid')
-        localStorage.removeItem('token-type')
-        this.$router.push(`/auth/signin`)
-      })
+    async logout({ commit }) {
+      try {
+        await this.$store.dispatch('logout')
+      } catch (error) {
+        this.error = error.response.data.errors
+      }
     }
   }
 }

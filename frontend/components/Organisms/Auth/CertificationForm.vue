@@ -1,8 +1,9 @@
 <template>
   <div class="main">
     <h2>{{ title }}</h2>
+    <AlertMessege :errorMessage="errorMessage" v-if="errorMessage" />
     <TextInput :value="user.name" :type="'text'" :label="'名前'" @input="user.name = $event" />
-    <TextInput :value="user.name_kana" :type="'text'" :label="'ふりがな'" @input="user.name_kana = $event" />
+    <TextInput :value="user.name_kana" :type="'text'" :label="'ふりがな'" @input="user.name_kana = $event" v-if="$route.name === 'auth-signup'" />
     <TextInput :value="user.email" :type="'email'" :label="'メールアドレス'" @input="user.email = $event" />
     <TextInput :value="user.password" :type="'password'" :label="'パスワード'" @input="user.password = $event" />
     <SubmitButton :text="submitBtnText" :methodName="methodName" @click-event="handleClickEvent" />
@@ -12,11 +13,13 @@
 <script>
 import TextInput from '~/components/Molecules/TextInput.vue'
 import SubmitButton from '~/components/Atoms/Button/SubmitButton.vue'
+import AlertMessege from '~/components/Atoms/Alert/AlertMessege.vue'
 
 export default {
   components: {
     TextInput,
-    SubmitButton
+    SubmitButton,
+    AlertMessege
   },
   props: {
     title: {
@@ -39,7 +42,8 @@ export default {
         name_kana: '',
         email: '',
         password: ''
-      }
+      },
+      errorMessage: ''
     }
   },
   methods: {
@@ -71,10 +75,11 @@ export default {
       }
     },
     async login() {
+      console.log(this.user)
       try {
-        await await this.$store.dispatch('login', this.user)
+        await this.$store.dispatch('login', this.user)
       } catch (error) {
-        this.error = error.response.data.errors
+        this.errorMessage = error.response.data.errors.join(' ')
       }
     }
   }

@@ -5,6 +5,9 @@ export const state = () => ({
 export const mutations = {
   setUser(state, user) {
     state.user = user
+  },
+  setInitialState(state) {
+    state.user = []
   }
 }
 
@@ -13,6 +16,7 @@ export const actions = {
     try {
       const response = await this.$auth.loginWith('local', {
         data: {
+          name: user.name,
           email: user.email,
           password: user.password
         }
@@ -21,8 +25,13 @@ export const actions = {
       this.$router.push('/')
       return response
     } catch (error) {
-      console.log(error)
-      throw new Error(error)
+      console.log('ログインエラー', error.response.data.errors)
+      throw error
     }
+  },
+  async logout({ commit }) {
+    await this.$auth.logout()
+    commit('setInitialState')
+    this.$router.push(`/auth/signin`)
   }
 }
