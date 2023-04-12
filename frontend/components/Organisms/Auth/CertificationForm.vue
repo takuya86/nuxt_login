@@ -71,7 +71,6 @@ export default {
       }
     },
     async login() {
-      console.log(this.user)
       try {
         await await this.$store.dispatch('login', this.user)
       } catch (error) {

@@ -1,7 +1,14 @@
 <template>
   <div>
     <h2>ユーザー情報</h2>
-    <div>{{ this.$store.state }}</div>
+    <h3>storeで保存した情報</h3>
+    <div>{{ storeUser.name_kana }}</div>
+    <div>{{ storeUser.name }}</div>
+    <div>{{ storeUser.email }}</div>
+    <h3>authで保存した情報</h3>
+    <div>{{ authUser.name_kana }}</div>
+    <div>{{ authUser.name }}</div>
+    <div>{{ authUser.email }}</div>
   </div>
 </template>
 
@@ -9,23 +16,8 @@
 export default {
   data() {
     return {
-      user: {}
-    }
-  },
-  created() {
-    this.getCurrentUser()
-  },
-  methods: {
-    async getCurrentUser() {
-      try {
-        console.log('実行されている')
-        await this.$axios.get(`/users`)
-        .then((res) => {
-          this.user = res.data
-        })
-      } catch (error) {
-        console.log(error)
-      }
+      storeUser: this.$store.state.user,
+      authUser: this.$store.state.auth.user
     }
   }
 }
