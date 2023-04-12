@@ -34,7 +34,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
+    { src: '~/plugins/persistedstate.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -85,7 +86,11 @@ export default {
             url: '/auth/sign_out',
             method: 'delete'
           },
-          user: false
+          user: {
+            url: '/auth/validate_token',
+            method: 'get',
+            propertyName: 'data'
+          },
         }
       }
     }

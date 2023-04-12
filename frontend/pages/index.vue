@@ -4,7 +4,6 @@
       <h1 class="title">
         nuxt認証機能
       </h1>
-      <div>{{ this.$auth.loggedIn }}</div>
       <UserDatail />
     </div>
   </div>
