@@ -34,7 +34,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
+    { src: '~/plugins/persistedstate.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -49,12 +50,17 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+  proxy: {
+    '/api/v1': {
+      target: 'http://backend:5000',
+      pathRewrite: {
+        '^/api': '/api/v1/'
+      }
+    }
+  },
+
   axios: {
-    baseURL: "http://localhost:3000"
+    baseURL: "http://localhost:5000/api/v1"
   },
   auth: {
     redirect: {
@@ -80,7 +86,11 @@ export default {
             url: '/auth/sign_out',
             method: 'delete'
           },
-          user: false
+          user: {
+            url: '/auth/validate_token',
+            method: 'get',
+            propertyName: 'data'
+          },
         }
       }
     }
